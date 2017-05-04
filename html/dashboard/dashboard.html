@@ -1,0 +1,52 @@
+<div>
+    
+    <h2>DashBoard</h2>
+</div>
+
+<div class="form-group">
+  <label for="sel1">Select Task:</label>
+  <select class="form-control" ng-model="selectedTask" ng-options="item.taskName for item in todos" ng-change="buildGraphData()">
+    
+  </select>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="graphData.length > 0">
+                <thead>
+                <tr> 
+                    <th style="text-align: center;width: 25px;">Tasks</th>
+                    <th style="text-align: center; width: 25px;">Day1</th>
+                    <th style="text-align: center; width: 25px;">Day2</th>
+                    <th style="text-align: center; width: 25px;">Day3</th>
+                    <th style="text-align: center; width: 25px;">Day4</th>
+                    <th style="text-align: center; width: 25px;">Day5</th>
+                    <th style="text-align: center; width: 25px;">Day6</th>
+                    <th style="text-align: center; width: 25px;">Day7</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr >
+                    <td>{{selectedTask.taskName}}</a></td>
+                    
+                    <td>{{graphData[0]}}
+                    </td>
+                    <td>{{graphData[1]}}
+                    </td>
+                    <td>{{graphData[2]}}
+                    </td>
+                    <td>{{graphData[3]}}
+                    </td>
+                    <td>{{graphData[4]}}
+                    </td>
+                    <td>{{graphData[5]}}
+                    </td>
+                    <td>{{graphData[6]}}
+                    </td>
+                    
+                </tr>
+                </tbody>
+            </table>
+
+
+
+<!--<nvd3 options="options" data="data"></nvd3>-->
