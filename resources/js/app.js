@@ -2,7 +2,8 @@
 
 var TaskManager = {};
 
-var App = angular.module('TaskManager', ['TaskManager.filters', 'TaskManager.service', 'TaskManager.directives', 'ui.bootstrap','ui.router','nvd3']);
+var App = angular.module('TaskManager', ['TaskManager.filters', 'TaskManager.service', 'TaskManager.directives','TaskManager.RestCallService',
+ 'ui.bootstrap','ui.router','nvd3']);
 
 // Declare app level module which depends on filters, and service
 App.config (function ($stateProvider, $urlRouterProvider) {
