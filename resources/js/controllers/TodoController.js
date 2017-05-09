@@ -1,9 +1,11 @@
 
 var TodoController = function ($scope, $http, TaskManagerFactory) {
-
+    $scope.errorObj = '';
     $scope.getAllTodos = function () {
         TaskManagerFactory.getAllTasks().then(function (response) {
             $scope.todos = response;
+        }, function (response) {
+            $scope.setError('An unexpected error has ocurred');
         });
     }
 
@@ -14,6 +16,8 @@ var TodoController = function ($scope, $http, TaskManagerFactory) {
         params.grpId = 1;
         TaskManagerFactory.addTask(params).then(function (response) {
             $scope.getAllTodos();
+        }, function (response) {
+            $scope.setError('An unexpected error has ocurred');
         });
         $scope.todoName = '';
     }
@@ -21,6 +25,8 @@ var TodoController = function ($scope, $http, TaskManagerFactory) {
     $scope.deleteTodo = function (taskToDelete) {
         TaskManagerFactory.deleteTask(taskToDelete).then(function (response) {
             $scope.getAllTodos();
+        }, function (response) {
+            $scope.errorObj = $scope.setError('An unexpected error has ocurred');
         });
     }
 
@@ -34,7 +40,24 @@ var TodoController = function ($scope, $http, TaskManagerFactory) {
         TaskManagerFactory.toggleTaskStatus(task).then(function (response) {
             $scope.getAllTodos();
         }, function () {
+            $scope.errorObj = $scope.setError('An unexpected error has ocurred');
         });
     }
+    $scope.resetTodoField = function () {
+        $scope.resetError();
+        $scope.todoName = '';
+        $scope.editMode = false;
+    };
+
+    $scope.resetError = function () {
+        $scope.error = false;
+        $scope.errorMessage = '';
+    };
+    $scope.setError = function (message) {
+        $scope.error = true;
+        $scope.errorMessage = message;
+    };
+
+
     $scope.getAllTodos();
 }

@@ -15,12 +15,17 @@ function taskManagerFactory(RestCallService) {
         addTask: addTask,
         deleteTask: deleteTask,
         toggleTaskStatus: toggleTaskStatus,
-        getAllTaskData : getAllTaskData
+        getAllTaskData: getAllTaskData,
+        addTaskDur: addTaskDur,
+        getTaskDur: getTaskDur
+
     };
     function getAllTasks() {
         return RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/getTaskList', {}).then(function (data) {
             obj = data.taskList;
             return data.taskList;
+        }, function (data) {
+            return data;
         });
 
     }
@@ -43,8 +48,20 @@ function taskManagerFactory(RestCallService) {
             return;
         });
     }
-    function getAllTaskData(){
+    function getAllTaskData() {
         return obj;
+    }
+
+    function addTaskDur(params) {
+        return RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/addTaskDuration', params).then(function (response) {
+            return;
+        });
+    }
+
+    function getTaskDur(params) {
+        return RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/getTaskDetails', params).then(function (response) {
+            return response;
+        })
     }
 }
 

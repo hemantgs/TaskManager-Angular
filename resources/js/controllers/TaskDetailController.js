@@ -1,36 +1,35 @@
-var TaskDetailController = function($scope, $http,$stateParams){
-    $scope.taskDetail ={};
-    $scope.startTime = 0 ;
+var TaskDetailController = function ($scope, $http, $stateParams, TaskManagerFactory) {
+    $scope.taskDetail = {};
+    $scope.startTime = 0;
     $scope.endTime = 0;
-    
-    $scope.addDuration = function()
-    {   var params = {}
-        params.startTimeString=$scope.startTime;
+
+    $scope.addDuration = function () {
+        var params = {}
+        params.startTimeString = $scope.startTime;
         params.endTimeString = $scope.endTime;
         params.taskId = $scope.taskDetail.taskId;
-        $http.post('http://localhost:8080/CodeChallenge/addTaskDuration',params).then(function(response){
-            console.log(response.data.taskList);
+        TaskManagerFactory.addTaskDur(params).then(function (response) {
             $scope.getDurations();
-            $scope.startDate = 0 ;
+            $scope.startDate = 0;
             $scope.endDate = 0;
-            
-        }, function(response){
-            
+
+        }, function (response) {
+
         });
     }
-    
-    $scope.getDurations = function(){
+
+    $scope.getDurations = function () {
         var params = $stateParams.taskObj
-        $http.post('http://localhost:8080/CodeChallenge/getTaskDetails',params).then(function(response){
-            console.log(response.data);
-            $scope.taskDetail = response.data;
-            
-        }, function(response){
-            
+        TaskManagerFactory.getTaskDur(params).then(function (response) {
+
+            $scope.taskDetail = response;
+
+        }, function (response) {
+
         });
     }
-    
-    
-    
+
+
+
     $scope.getDurations();
 }
