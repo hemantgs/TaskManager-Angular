@@ -1,13 +1,12 @@
-
-var TodoController = function ($scope, $http, TaskManagerFactory) {
+App.controller('TodoController', ['$scope', '$http', 'TaskManagerFactory', function ($scope, $http, TaskManagerFactory) {
     $scope.errorObj = '';
     $scope.getAllTodos = function () {
         TaskManagerFactory.getAllTasks().then(function (response) {
             $scope.todos = response;
-        }, function (response) {
+        }, function (error) {
             $scope.setError('An unexpected error has ocurred');
         });
-    }
+    };
 
     $scope.addTodo = function (newTask) {
 
@@ -16,33 +15,33 @@ var TodoController = function ($scope, $http, TaskManagerFactory) {
         params.grpId = 1;
         TaskManagerFactory.addTask(params).then(function (response) {
             $scope.getAllTodos();
-        }, function (response) {
+        }, function (error) {
             $scope.setError('An unexpected error has ocurred');
         });
         $scope.todoName = '';
-    }
+    };
 
     $scope.deleteTodo = function (taskToDelete) {
         TaskManagerFactory.deleteTask(taskToDelete).then(function (response) {
             $scope.getAllTodos();
-        }, function (response) {
+        }, function (error) {
             $scope.errorObj = $scope.setError('An unexpected error has ocurred');
         });
-    }
+    };
 
     $scope.toggleStatus = function (task) {
-        if (todo.status === 0) {
-            todo.status = 1;
+        if (task.status === 0) {
+            task.status = 1;
         }
         else {
-            todo.status = 0;
+            task.status = 0;
         }
         TaskManagerFactory.toggleTaskStatus(task).then(function (response) {
             $scope.getAllTodos();
         }, function () {
             $scope.errorObj = $scope.setError('An unexpected error has ocurred');
         });
-    }
+    };
     $scope.resetTodoField = function () {
         $scope.resetError();
         $scope.todoName = '';
@@ -60,4 +59,4 @@ var TodoController = function ($scope, $http, TaskManagerFactory) {
 
 
     $scope.getAllTodos();
-}
+}]);

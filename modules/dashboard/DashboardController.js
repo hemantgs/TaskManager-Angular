@@ -1,4 +1,5 @@
-var DashboardController = function ($scope, TaskManagerFactory, RestCallService) {
+
+App.controller('DashboardController', ['$scope', 'TaskManagerFactory', 'RestCallService', function ($scope, TaskManagerFactory, RestCallService) {
 
     $scope.options = {
         chart: {
@@ -10,8 +11,12 @@ var DashboardController = function ($scope, TaskManagerFactory, RestCallService)
                 bottom: 60,
                 left: 55
             },
-            x: function (d) { return d.label; },
-            y: function (d) { return d.value; },
+            x: function (d) {
+                return d.label;
+            },
+            y: function (d) {
+                return d.value;
+            },
             showValues: true,
             valueFormat: function (d) {
                 return d3.format(',.2f')(d);
@@ -22,18 +27,15 @@ var DashboardController = function ($scope, TaskManagerFactory, RestCallService)
             },
             yAxis: {
                 axisLabel: 'Y Axis',
-                axisLabelDistance: 30,
-
+                axisLabelDistance: 30
             },
             yDomain: [0, 10]
         }
     };
 
 
-
-
     $scope.buildGraphData = function () {
-        var task = $scope.selectedTask
+        var task = $scope.selectedTask;
 
         RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/getDashBoardData', task).then(function (response) {
             var graphData = response;
@@ -54,11 +56,11 @@ var DashboardController = function ($scope, TaskManagerFactory, RestCallService)
 
         });
 
-    }
+    };
 
 
     $scope.getAllTodos = function () {
         $scope.todos = TaskManagerFactory.getAllTaskData();
-    }
+    };
     $scope.getAllTodos();
-}
+}]);

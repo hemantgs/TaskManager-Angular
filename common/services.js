@@ -5,8 +5,7 @@
 var AppServices = angular.module('TaskManager.service', ['TaskManager.RestCallService']);
 
 
-
-AppServices.factory('TaskManagerFactory', taskManagerFactory);
+AppServices.factory('TaskManagerFactory',['RestCallService', taskManagerFactory]);
 
 function taskManagerFactory(RestCallService) {
     var obj = {};
@@ -21,17 +20,17 @@ function taskManagerFactory(RestCallService) {
 
     };
     function getAllTasks() {
-        return RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/getTaskList', {}).then(function (data) {
+        return RestCallService.makeRestCall('/CodeChallenge/getTaskList', {}).then(function (data) {
             obj = data.taskList;
             return data.taskList;
-        }, function (data) {
-            return data;
+        }, function (error) {
+            return error;
         });
 
     }
 
     function addTask(params) {
-        return RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/addTask', params).then(function (response) {
+        return RestCallService.makeRestCall('/CodeChallenge/addTask', params).then(function (response) {
             return
         });
     }
@@ -39,27 +38,29 @@ function taskManagerFactory(RestCallService) {
     function deleteTask(taskTobeDeleted) {
         var params = {}
         params.taskId = taskTobeDeleted;
-        return RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/deleteTask', params).then(function (response) {
+        return RestCallService.makeRestCall('/CodeChallenge/deleteTask', params).then(function (response) {
 
         });
     }
+
     function toggleTaskStatus(task) {
-        return RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/toggleStatus', task).then(function (response) {
+        return RestCallService.makeRestCall('/CodeChallenge/toggleStatus', task).then(function (response) {
             return;
         });
     }
+
     function getAllTaskData() {
         return obj;
     }
 
     function addTaskDur(params) {
-        return RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/addTaskDuration', params).then(function (response) {
+        return RestCallService.makeRestCall('/CodeChallenge/addTaskDuration', params).then(function (response) {
             return;
         });
     }
 
     function getTaskDur(params) {
-        return RestCallService.makeRestCall('http://localhost:8080/CodeChallenge/getTaskDetails', params).then(function (response) {
+        return RestCallService.makeRestCall('/CodeChallenge/getTaskDetails', params).then(function (response) {
             return response;
         })
     }

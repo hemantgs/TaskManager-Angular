@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" ng-app="TaskManager">
+
 <head>
     <meta charset="utf-8">
     <title>TaskManager</title>
@@ -7,71 +8,73 @@
 
     <!-- Loading Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"> 
-    <link href="resources/css/nv.d3.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="assets/css/nv.d3.min.css" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
 
 </head>
+
 <body>
-<div id="wrapper">
+    <div id="wrapper">
 
-   <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">TaskManager</a>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">TaskManager</a>
+                </div>
+                <ul class="nav navbar-nav">
+
+                    <li><a ui-sref="todo">Add Tasks</a></li>
+                    <li><a ui-sref="dashboard">Task Dashboard</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <h1 class="headline">Task Manager</h1>
+        <hr>
+        <div ui-view></div>
+
     </div>
-    <ul class="nav navbar-nav">
-      
-      <li><a ui-sref="todo">Add Tasks</a></li>
-      <li><a ui-sref="dashboard">Task Dashboard</a></li>
-    </ul>
-  </div>
-</nav>
 
-    <h1 class="demo-headline">Task Manager</h1>
-    <hr>
-    <div ui-view></div>
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-select.js"></script>
+    <script src="assets/js/bootstrap-switch.js"></script>
+    <script src="assets/js/flatui-checkbox.js"></script>
+    <script src="assets/js/flatui-radio.js"></script>
+    <script src="assets/js/jquery.tagsinput.js"></script>
+    <script src="assets/js/jquery.placeholder.js"></script>
+    <script src="assets/js/typeahead.js"></script>
+    <script src="assets/bootstrap/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/application.js"></script>
+    <script src="assets/js/angular/angular-file-upload-shim.min.js"></script>
 
-</div>
+    <script src="assets/js/angular/angular.min.js"></script>
+    <script src="assets/js/angular/angular-route.min.js"></script>
+    <script src="assets/js/angular/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+    <script src="assets/js/angular/ui-ace.min.js"></script>
+    <script src="assets/js/angular/ng-table.min.js"></script>
 
-<script src="resources/js/jquery-1.8.3.min.js"></script>
-<script src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="resources/js/bootstrap-select.js"></script>
-<script src="resources/js/bootstrap-switch.js"></script>
-<script src="resources/js/flatui-checkbox.js"></script>
-<script src="resources/js/flatui-radio.js"></script>
-<script src="resources/js/jquery.tagsinput.js"></script>
-<script src="resources/js/jquery.placeholder.js"></script>
-<script src="resources/js/typeahead.js"></script>
-<script src="resources/bootstrap/js/google-code-prettify/prettify.js"></script>
-<script src="resources/js/application.js"></script>
-<script src="resources/js/lib/angular/angular-file-upload-shim.min.js"></script>
+    <script src="assets/js/angular/angular-file-upload.min.js"></script>
 
+    <script src="assets/js/d3.min.js"></script>
+    <script src="assets/js/nv.d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js"></script>
 
-<script src="resources/js/lib/angular/angular.min.js"></script>
-<script src="resources/js/lib/angular/angular-route.min.js"></script>
-<script src="resources/js/lib/angular/ui-bootstrap-tpls-0.11.0.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
-<script src="resources/js/lib/angular/ui-ace.min.js"></script>
-<script src="resources/js/lib/angular/ng-table.min.js"></script>
+    <script src="common/app.js"></script>
+    <script src="common/services.js"></script>
+    <script src="common/RestCallService.js"></script>
+    <script src="modules/todo/TodoController.js"></script>
+    <script src="modules/detail/TaskDetailController.js"></script>
+    <script src="modules/dashboard/DashboardController.js"></script>
+    <script src="common/RestCallService.js"></script>
+    <script src="common/filters.js"></script>
+    <script src="common/directives.js"></script>
 
-<script src="resources/js/lib/angular/angular-file-upload.min.js"></script>
-
-<script src="resources/js/d3.min.js"></script>
-<script src="resources/js/nv.d3.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js"></script>
-
-<script src="resources/js/app.js"></script>
-<script src="resources/js/services.js"></script>
-<script src="resources/js/RestCallService.js"></script>
-<script src="resources/js/controllers/TodoController.js"></script>
-    <script src="resources/js/controllers/TaskDetailController.js"></script>
-    <script src="resources/js/controllers/DashboardController.js"></script>
-<script src="resources/js/RestCallService.js"></script>
-<script src="resources/js/filters.js"></script>
-<script src="resources/js/directives.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 var RestCallService = angular.module('TaskManager.RestCallService', []);
 
-RestCallService.service('RestCallService', restCallService);
+RestCallService.service('RestCallService',['$http', restCallService]);
 
 function restCallService($http) {
     return {
@@ -10,8 +10,8 @@ function restCallService($http) {
     function makeRestCall(url, params) {
         return $http.post(url, params).then(function (response) {
             return response.data;
-        }, function (response) {
-            return response;
+        }, function (error) {
+            return error;
         });
 
     }
